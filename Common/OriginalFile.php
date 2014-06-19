@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Common;
+namespace SmartInformationSystems\FileBundle\Common;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -16,7 +16,7 @@ class OriginalFile extends File
      *
      * @var string
      */
-    const TMP_DIR = '/tmp/smart_systems/fileBundle';
+    const TMP_DIR = '/tmp/smart_information_systems/fileBundle';
 
     /**
      * Оригинальное имя.
