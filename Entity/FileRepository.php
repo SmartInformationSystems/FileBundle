@@ -1,9 +1,9 @@
 <?php
 
-namespace SmartSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Entity;
 
-use SmartSystems\FileBundle\Common\OriginalFile;
-use SmartSystems\FileBundle\Common\AbstractRepository;
+use SmartInformationSystems\FileBundle\Common\OriginalFile;
+use SmartInformationSystems\FileBundle\Common\AbstractRepository;
 
 /**
  * Репозиторий файлов.
