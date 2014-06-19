@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Exception;
+namespace SmartInformationSystems\FileBundle\Exception;
 
 class StorageException extends \Exception
 {
