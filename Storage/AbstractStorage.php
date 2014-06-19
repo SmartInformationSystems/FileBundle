@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartSystems\FileBundle\Storage;
+namespace SmartInformationSystems\FileBundle\Storage;
 
-use SmartSystems\FileBundle\Entity\File;
-use SmartSystems\FileBundle\Entity\Image;
-use SmartSystems\FileBundle\Entity\ImagePreview;
-use SmartSystems\FileBundle\Exception\UnknownStorageParameterException;
+use SmartInformationSystems\FileBundle\Entity\File;
+use SmartInformationSystems\FileBundle\Entity\Image;
+use SmartInformationSystems\FileBundle\Entity\ImagePreview;
+use SmartInformationSystems\FileBundle\Exception\UnknownStorageParameterException;
 
 /**
  * Абстрактный класс хранилища.
