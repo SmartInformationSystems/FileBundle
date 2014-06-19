@@ -1,14 +1,14 @@
 <?php
 
-namespace SmartSystems\FileBundle\Twig;
+namespace SmartInformationSystems\FileBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
 
-use SmartSystems\FileBundle\Entity\Image;
-use SmartSystems\FileBundle\Entity\ImagePreviewRepository;
-use SmartSystems\FileBundle\Storage\AbstractStorage;
-use SmartSystems\FileBundle\Storage\ConfigurationContainer;
-use SmartSystems\FileBundle\Storage\StorageFactory;
+use SmartInformationSystems\FileBundle\Entity\Image;
+use SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository;
+use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
+use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
+use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 
 /**
  * Расширение для изображений.
@@ -90,7 +90,7 @@ class ImageExtension extends \Twig_Extension
     public function previewFilter(Image $image, $name)
     {
         /** @var ImagePreviewRepository $rep */
-        $rep = $this->em->getRepository('SmartSystemsFileBundle:ImagePreview');
+        $rep = $this->em->getRepository('SmartInformationSystemsFileBundle:ImagePreview');
         $preview = $rep->getByName($image, $name);
 
         if ($preview = $rep->getByName($image, $name)) {
