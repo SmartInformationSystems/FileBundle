@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Annotations\Image;
+namespace SmartInformationSystems\FileBundle\Annotations\Image;
 
 use Doctrine\ORM\Mapping\Annotation;
 
