@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartSystems\FileBundle\Storage;
+namespace SmartInformationSystems\FileBundle\Storage;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-use SmartSystems\FileBundle\Entity\File;
+use SmartInformationSystems\FileBundle\Entity\File;
 
 /**
  * Хранилище в файловой системе.
