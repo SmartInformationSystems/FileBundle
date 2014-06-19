@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\EventListener;
+namespace SmartInformationSystems\FileBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
