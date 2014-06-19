@@ -1,0 +1,14 @@
+parameters:
+    # params
+
+services:
+    smart_systems_file.configuration_container:
+        class: SmartSystems\FileBundle\Common\ConfigurationContainer
+
+    smart_systems_file.form.type.file:
+        class: SmartSystems\FileBundle\Form\Type\FileType
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            container: "@smart_systems_file.configuration_container"
+        tags:
+            - { name: form.type, alias: sis_file_type }

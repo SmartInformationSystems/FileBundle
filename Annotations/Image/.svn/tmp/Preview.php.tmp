@@ -1,0 +1,33 @@
+<?php
+
+namespace SmartSystems\FileBundle\Annotations\Image;
+
+/**
+ * Превью картинки.
+ *
+ * @Annotation
+ * @Target("PROPERTY")
+ */
+final class Preview
+{
+    /**
+     * Имя превью.
+     *
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Ширина.
+     *
+     * @var integer
+     */
+    public $width;
+
+    /**
+     * Высота.
+     *
+     * @var integer
+     */
+    public $height;
+}

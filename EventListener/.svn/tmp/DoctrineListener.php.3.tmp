@@ -1,0 +1,146 @@
+<?php
+
+namespace SmartSystems\FileBundle\EventListener;
+
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\Common\Annotations\AnnotationReader;
+
+use SmartSystems\FileBundle\Entity\File;
+use SmartSystems\FileBundle\Entity\Image;
+use SmartSystems\FileBundle\Entity\ImagePreviewRepository;
+use SmartSystems\FileBundle\Storage\AbstractStorage;
+use SmartSystems\FileBundle\Storage\ConfigurationContainer;
+use SmartSystems\FileBundle\Storage\StorageFactory;
+
+/**
+ * Обработчик событий Doctrine.
+ *
+ */
+class DoctrineListener
+{
+    /**
+     * Логгировать сущность.
+     *
+     * @const string
+     */
+    const ANNOTATION_IMAGE = 'SmartSystems\FileBundle\Annotations\Image';
+
+    /**
+     * Хранилище файлов.
+     *
+     * @var AbstractStorage
+     */
+    private $storage;
+
+    /**
+     * Обработчик аннотаций.
+     *
+     * @var AnnotationReader
+     */
+    private $annotationReader = NULL;
+
+    /**
+     * Конструктор.
+     *
+     * @param ConfigurationContainer $configuration Настройки
+     */
+    public function __construct(ConfigurationContainer $configuration)
+    {
+        $this->storage = StorageFactory::create($configuration);
+        $this->annotationReader = new AnnotationReader();
+    }
+
+    /**
+     * Обработчик события "prePersist".
+     *
+     * @param LifecycleEventArgs $args
+     *
+     * @return void
+     */
+    public function prePersist(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->checkPreviews(
+            $entity,
+            $args->getEntityManager()
+        );
+
+        if ($entity instanceof File) {
+            $entity->setExternalToken(
+                $this->storage->store($entity)
+            );
+        }
+    }
+
+    /**
+     * Обработчик события "preUpdate".
+     *
+     * @param LifecycleEventArgs $args
+     *
+     * @return void
+     */
+    public function preUpdate(PreUpdateEventArgs $args)
+    {
+        $this->checkPreviews(
+            $args->getEntity(),
+            $args->getEntityManager()
+        );
+    }
+
+    /**
+     * Возвращает обработчик аннотаций.
+     *
+     * @return AnnotationReader
+     */
+    public function getAnnotationReader()
+    {
+        return $this->annotationReader;
+    }
+
+    /**
+     * Проверка превью изображений.
+     *
+     * @param object $entity Сущность
+     * @param EntityManager $em Подключение к БД
+     *
+     * @return void
+     */
+    private function checkPreviews($entity, EntityManager $em)
+    {
+        $reflectionObject = new \ReflectionObject($entity);
+
+        foreach ($reflectionObject->getProperties() as $reflectionProperty) {
+            if ($annotation = $this->getAnnotationReader()->getPropertyAnnotation(
+                $reflectionProperty,
+                self::ANNOTATION_IMAGE
+            )) {
+                if (isset($annotation->previews)) {
+                    if (!is_array($annotation->previews)) {
+                        $annotation->previews = array($annotation->previews);
+                    }
+
+                    $method = 'get' . ucwords($reflectionProperty->getName());
+                    $image = $entity->$method();
+
+                    if ($image instanceof Image) {
+                        foreach ($annotation->previews as $previewConfig) {
+                            $preview = ImagePreviewRepository::createPreview(
+                                $image,
+                                $previewConfig->name,
+                                $previewConfig->width,
+                                $previewConfig->height,
+                                $previewConfig->crop,
+                                $em,
+                                $this->storage
+                            );
+                            $image->addPreview($preview);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

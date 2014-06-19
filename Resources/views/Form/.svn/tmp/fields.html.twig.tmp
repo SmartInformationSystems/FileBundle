@@ -1,0 +1,32 @@
+{% block sis_file_type_widget %}
+    {% spaceless %}
+        {% if file_id %}
+            {% set oldValue = value %}
+            {% set oldType = type %}
+            {% set oldId = id %}
+
+            {% set value = file_id %}
+            {% set type = 'hidden' %}
+            {% set id = id ~ '_hidden' %}
+            {{ block('form_widget_simple') }}
+            {% set value = oldValue %}
+            {% set type = oldType %}
+            {% set id = oldId %}
+        {% endif %}
+        {% if file_url %}
+            <a href="{{ file_url }}" target="_blank">{{ file_url }}</a><br/>
+        {% endif %}
+        {{ block('form_widget_simple') }}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var $obj = $('#{{ id }}');
+                $obj.closest('form').submit(function() {
+                    if (!$obj.val()) {
+                        $obj.prop('disabled', true);
+                    }
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock %}

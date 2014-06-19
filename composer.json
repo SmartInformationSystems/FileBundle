@@ -1,0 +1,27 @@
+{
+    "name" : "SmartInformationSystems/file-bundle",
+    "description" : "File bundle",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "YK115",
+        "email" : "info@smart-systems.ru"
+    }],
+    "keywords" : [
+        "file image"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : { "SmartInformationSystems\\FileBundle" : "" }
+    },
+    "target-dir" : "SmartInformationSystems/FileBundle",
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "1.0-dev"
+        }
+    }
+}
+

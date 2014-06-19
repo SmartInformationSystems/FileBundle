@@ -1,0 +1,29 @@
+parameters:
+    # params
+
+services:
+    smart_systems_file.storage.configuration_container:
+        class: SmartSystems\FileBundle\Storage\ConfigurationContainer
+
+    smart_systems_file.form.type.file:
+        class: SmartSystems\FileBundle\Form\Type\FileType
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            configuration: "@smart_systems_file.storage.configuration_container"
+        tags:
+            - { name: form.type, alias: sis_file_type }
+
+    smart_systems_file.doctrine.prePersist:
+        class: SmartSystems\FileBundle\EventListener\DoctrineListener
+        arguments:
+            configuration: "@smart_systems_file.storage.configuration_container"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    smart_systems_file.twig.image_extension:
+        class: SmartSystems\FileBundle\Twig\ImageExtension
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            storageConfiguration: "@smart_systems_file.storage.configuration_container"
+        tags:
+            - { name: twig.extension }
