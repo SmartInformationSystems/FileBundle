@@ -1,16 +1,16 @@
 <?php
 
-namespace SmartSystems\FileBundle\Form\DataTransformer;
+namespace SmartInformationSystems\FileBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use SmartSystems\FileBundle\Common\OriginalFile;
-use SmartSystems\FileBundle\Common\AbstractRepository;
-use SmartSystems\FileBundle\Storage\AbstractStorage;
-use SmartSystems\FileBundle\Entity\ImageRepository;
+use SmartInformationSystems\FileBundle\Common\OriginalFile;
+use SmartInformationSystems\FileBundle\Common\AbstractRepository;
+use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
+use SmartInformationSystems\FileBundle\Entity\ImageRepository;
 
 
 /**
