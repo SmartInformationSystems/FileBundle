@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Form\Type;
+namespace SmartInformationSystems\FileBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -9,12 +9,12 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use SmartSystems\FileBundle\Form\DataTransformer\UploadedFileTransformer;
-use SmartSystems\FileBundle\Storage\ConfigurationContainer;
-use SmartSystems\FileBundle\Storage\StorageFactory;
-use SmartSystems\FileBundle\Storage\AbstractStorage;
-use SmartSystems\FileBundle\Entity\Image;
-use SmartSystems\FileBundle\Entity\ImagePreviewRepository;
+use SmartInformationSystems\FileBundle\Form\DataTransformer\UploadedFileTransformer;
+use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
+use SmartInformationSystems\FileBundle\Storage\StorageFactory;
+use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
+use SmartInformationSystems\FileBundle\Entity\Image;
+use SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository;
 
 /**
  * Тип поля - "файл".
