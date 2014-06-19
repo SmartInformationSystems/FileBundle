@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\DependencyInjection;
+namespace SmartInformationSystems\FileBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('smart_systems_file');
+        $rootNode = $treeBuilder->root('smart_information_systems_file');
 
         $rootNode->children()
             ->arrayNode('storage')->children()
