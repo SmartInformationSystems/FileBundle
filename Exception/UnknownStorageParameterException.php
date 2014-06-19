@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Exception;
+namespace SmartInformationSystems\FileBundle\Exception;
 
 class UnknownStorageParameterException extends StorageException
 {
