@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Tests\Controller;
+namespace SmartInformationSystems\FileBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
