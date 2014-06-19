@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\DependencyInjection;
+namespace SmartInformationSystems\FileBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SmartSystemsFileExtension extends Extension
+class SmartInformationSystemsFileExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -25,7 +25,7 @@ class SmartSystemsFileExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $configurationContainer = $container->getDefinition('smart_systems_file.storage.configuration_container');
+        $configurationContainer = $container->getDefinition('smart_information_systems_file.storage.configuration_container');
         $configurationContainer->addMethodCall('setConfig', array($config));
     }
 }
