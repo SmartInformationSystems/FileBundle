@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartSystems\FileBundle\Common;
+namespace SmartInformationSystems\FileBundle\Common;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use SmartSystems\FileBundle\Entity\File as SisFile;
+use SmartInformationSystems\FileBundle\Entity\File as SisFile;
 
 /**
  * Абстрактный класс для файлов.
