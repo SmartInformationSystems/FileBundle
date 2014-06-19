@@ -1,15 +1,15 @@
 <?php
 
-namespace SmartSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use SmartSystems\FileBundle\Common\AbstractEntity;
+use SmartInformationSystems\FileBundle\Common\AbstractEntity;
 
 /**
  * Превью изображения.
  *
- * @ORM\Entity(repositoryClass="SmartSystems\FileBundle\Entity\ImagePreviewRepository")
+ * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository")
  * @ORM\Table(name="sis_image_preview", uniqueConstraints={@ORM\UniqueConstraint(name="ui_name", columns={"image_id", "name"})})
  * @ORM\HasLifecycleCallbacks()
  */
