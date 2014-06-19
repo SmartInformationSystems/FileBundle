@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Annotations;
+namespace SmartInformationSystems\FileBundle\Annotations;
 
 use Doctrine\ORM\Mapping\Annotation;
 
