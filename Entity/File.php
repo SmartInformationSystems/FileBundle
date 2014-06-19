@@ -1,16 +1,16 @@
 <?php
 
-namespace SmartSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use SmartSystems\FileBundle\Common\OriginalFile;
-use SmartSystems\FileBundle\Common\AbstractEntity;
+use SmartInformationSystems\FileBundle\Common\OriginalFile;
+use SmartInformationSystems\FileBundle\Common\AbstractEntity;
 
 /**
  * Файл.
  *
- * @ORM\Entity(repositoryClass="SmartSystems\FileBundle\Entity\FileRepository")
+ * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Entity\FileRepository")
  * @ORM\Table(name="sis_file")
  * @ORM\HasLifecycleCallbacks()
  */
