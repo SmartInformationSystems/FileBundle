@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartSystems\FileBundle\Storage;
+namespace SmartInformationSystems\FileBundle\Storage;
 
 /**
  * Настройка хранилища.
