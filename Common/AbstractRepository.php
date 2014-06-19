@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartSystems\FileBundle\Common;
+namespace SmartInformationSystems\FileBundle\Common;
 
 use Doctrine\ORM\EntityRepository;
 
-use SmartSystems\FileBundle\Entity\File;
+use SmartInformationSystems\FileBundle\Entity\File;
 
 /**
  * Базовый репозиторий для файлов.
