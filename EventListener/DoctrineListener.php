@@ -4,10 +4,10 @@ namespace SmartInformationSystems\FileBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-use SmartSystems\FileBundle\Entity\File;
-use SmartSystems\FileBundle\Storage\AbstractStorage;
-use SmartSystems\FileBundle\Storage\ConfigurationContainer;
-use SmartSystems\FileBundle\Storage\StorageFactory;
+use SmartInformationSystems\FileBundle\Entity\File;
+use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
+use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
+use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 
 /**
  * Обработчик событий Doctrine.
