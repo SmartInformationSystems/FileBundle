@@ -1,8 +1,8 @@
 <?php
 
-namespace SmartSystems\FileBundle\Storage;
+namespace SmartInformationSystems\FileBundle\Storage;
 
-use SmartSystems\FileBundle\Exception\UnknownStorageException;
+use SmartInformationSystems\FileBundle\Exception\UnknownStorageException;
 
 /**
  * Фабрика объектов хранилища.
