@@ -88,7 +88,7 @@ class ImageRepository extends AbstractRepository
 
         if ($annotation = $reader->getPropertyAnnotation(
             $reflectionProperty,
-            'SmartSystems\FileBundle\Annotations\Image'
+            'SmartInformationSystems\FileBundle\Annotations\Image'
         )) {
             $options['previews'] = array();
 
