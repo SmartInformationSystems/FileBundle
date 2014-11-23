@@ -13,7 +13,7 @@
         "MIT"
     ],
     "require" : {
-        "imagine/imagine": "dev-master"
+        "imagine/imagine": "~0.6.0"
     },
     "autoload" : {
         "psr-0" : { "SmartInformationSystems\\FileBundle" : "" }
