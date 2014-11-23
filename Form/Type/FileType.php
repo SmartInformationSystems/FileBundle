@@ -82,7 +82,7 @@ class FileType extends AbstractType
 
             if ($file instanceof Image) {
                 /** @var ImagePreviewRepository $rep */
-                $rep = $this->om->getRepository('SmartSystemsFileBundle:ImagePreview');
+                $rep = $this->om->getRepository('SmartInformationSystemsFileBundle:ImagePreview');
                 if ($preview = $rep->getByName($file, 'admin')) {
                     $previewUrl = $this->storage->getUrl($preview);
                 }
