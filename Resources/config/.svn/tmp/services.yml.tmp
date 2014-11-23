@@ -1,9 +1,0 @@
-parameters:
-#    smart_systems_file.example.class: SmartSystems\FileBundle\Example
-
-services:
-    smart_systems_file.form.type.file:
-        class: SmartSystems\FileBundle\Form\Type\FileType
-        arguments: ["@doctrine.orm.entity_manager"]
-        tags:
-            - { name: form.type, alias: sis_file_type }
