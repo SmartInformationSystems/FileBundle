@@ -34,7 +34,7 @@ final class Image implements Annotation
     public $crop = FALSE;
 
     /**
-     * @var array<SmartSystems\FileBundle\Annotations\Image\Preview>
+     * @var array<SmartInformationSystems\FileBundle\Annotations\Image\Preview>
      */
     public $previews = array();
 }
