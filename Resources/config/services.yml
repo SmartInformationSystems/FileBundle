@@ -20,7 +20,15 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 
-    smart_information_systems_file.twig.image_extension:
+    smart_information_systems_file.twig.sis_file_extension:
+        class: SmartInformationSystems\FileBundle\Twig\FileExtension
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            storageConfiguration: "@smart_information_systems_file.storage.configuration_container"
+        tags:
+            - { name: twig.extension }
+
+    smart_information_systems_file.twig.sis_image_extension:
         class: SmartInformationSystems\FileBundle\Twig\ImageExtension
         arguments:
             entityManager: "@doctrine.orm.entity_manager"

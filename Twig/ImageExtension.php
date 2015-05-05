@@ -53,7 +53,7 @@ class ImageExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('preview', array($this, 'previewFilter')),
+            new \Twig_SimpleFilter('sis_image_preview', array($this, 'previewFilter')),
         );
     }
 
@@ -62,7 +62,7 @@ class ImageExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'image_extension';
+        return 'sis_image_extension';
     }
 
     /**
