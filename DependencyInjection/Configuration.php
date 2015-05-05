@@ -22,8 +22,11 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->arrayNode('storage')->children()
-                ->scalarNode('type')->isRequired()->end()
-                ->variableNode('params')->end()
+                ->enumNode('type')->values(array('filesystem'))->isRequired()->end()
+                ->arrayNode('params')->children()
+                    ->scalarNode('path')->end()
+                    ->scalarNode('url')->end()
+                ->end()
             ->end()
         ->end();
 
