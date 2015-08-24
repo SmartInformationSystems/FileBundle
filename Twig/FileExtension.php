@@ -87,7 +87,7 @@ class FileExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function fileGetUrlFilter(File $file)
+    public function fileGetUrlFilter($file)
     {
         return $this->getStorage()->getUrl($file);
     }
