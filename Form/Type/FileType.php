@@ -7,8 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Form\Extension\Core\Type\FileType as SymfonyFileType;
 
 use SmartInformationSystems\FileBundle\Form\DataTransformer\UploadedFileTransformer;
 use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
@@ -116,32 +116,23 @@ class FileType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver
-            ->setDefaults(array(
-                'invalid_message' => 'Error storing file.',
-            ))
-        ;
-
-        $resolver->setRequired(array(
-            'repository',
-            'entity_class',
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
-        return 'file';
+        return SymfonyFileType::class;
     }
 
     /**
      * {@inheritdoc}
      */
     public function getName()
+    {
+        return 'sis_file_type';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'sis_file_type';
     }
