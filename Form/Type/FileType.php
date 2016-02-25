@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -96,6 +97,20 @@ class FileType extends AbstractType
         $view->vars['file_url'] = $fileUrl;
         $view->vars['preview_url'] = $previewUrl;
         $view->vars['file_object'] = $file;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver
+            ->setDefaults(array(
+                'invalid_message' => 'Error storing file.',
+            ))
+        ;
+
+        $resolver->setRequired(array(
+            'repository',
+            'entity_class',
+        ));
     }
 
     /**
