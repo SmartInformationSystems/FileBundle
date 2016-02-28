@@ -91,7 +91,6 @@ class ImageExtension extends \Twig_Extension
     {
         /** @var ImagePreviewRepository $rep */
         $rep = $this->em->getRepository('SmartInformationSystemsFileBundle:ImagePreview');
-        $preview = $rep->getByName($image, $name);
 
         if ($preview = $rep->getByName($image, $name)) {
             return $this->getStorage()->getUrl($preview);
