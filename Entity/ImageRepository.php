@@ -63,8 +63,11 @@ class ImageRepository extends AbstractRepository
                 new Box($width, $height),
                 $crop ? ImageInterface::THUMBNAIL_OUTBOUND : ImageInterface::THUMBNAIL_INSET
             )
-            ->save($file->getRealPath())
-        ;
+            ->save($file->getRealPath(), array(
+                'jpeg_quality' => 100,
+                'png_compression_level' => 9,
+            ));
+
         clearstatcache(TRUE, $file->getRealPath());
     }
 
