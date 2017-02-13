@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,45 +8,32 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\Extension\Core\Type\FileType as SymfonyFileType;
-
 use SmartInformationSystems\FileBundle\Form\DataTransformer\UploadedFileTransformer;
 use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
 use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
 use SmartInformationSystems\FileBundle\Entity\Image;
-use SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository;
+use SmartInformationSystems\FileBundle\Repository\ImagePreviewRepository;
 
-/**
- * Тип поля - "файл".
- *
- */
 class FileType extends AbstractType
 {
     /**
-     * Подключение к БД.
+     * Подключение к БД
      *
      * @var ObjectManager
      */
     private $om;
 
     /**
-     * Хранилище файлов.
+     * Хранилище файлов
      *
      * @var AbstractStorage
      */
     private $storage;
 
-    /**
-     * Конструктор.
-     *
-     * @param ObjectManager $entityManager Подключение к БД
-     * @param ConfigurationContainer $configuration Настройки
-     *
-     */
     public function __construct(ObjectManager $entityManager, ConfigurationContainer $configuration)
     {
         $this->om = $entityManager;
-
         $this->storage = StorageFactory::create($configuration);
     }
 
@@ -62,7 +48,7 @@ class FileType extends AbstractType
             new UploadedFileTransformer(
                 $this->om,
                 $this->storage,
-                $options['repository'],
+                $options['data_class'],
                 $options['entity_class'],
                 $builder->getName()
             )
@@ -99,6 +85,9 @@ class FileType extends AbstractType
         $view->vars['file_object'] = $file;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -108,7 +97,7 @@ class FileType extends AbstractType
         ;
 
         $resolver->setRequired(array(
-            'repository',
+            'data_class',
             'entity_class',
         ));
     }

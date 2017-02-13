@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,14 +8,19 @@ use SmartInformationSystems\FileBundle\Common\AbstractEntity;
 /**
  * Превью изображения.
  *
- * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository")
- * @ORM\Table(name="sis_image_preview", uniqueConstraints={@ORM\UniqueConstraint(name="ui_name", columns={"image_id", "name"})})
+ * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Repository\ImagePreviewRepository")
+ * @ORM\Table(
+ *     name="sis_image_preview",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="ui_name", columns={"image_id", "name"})
+ *     }
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class ImagePreview extends AbstractEntity
 {
     /**
-     * Имя превью.
+     * Имя превью
      *
      * @var string
      *
@@ -25,7 +29,7 @@ class ImagePreview extends AbstractEntity
     protected $name;
 
     /**
-     * Изображение.
+     * Изображение
      *
      * @var Image
      *
@@ -35,7 +39,7 @@ class ImagePreview extends AbstractEntity
     protected $image;
 
     /**
-     * Файл.
+     * Файл
      *
      * @var File
      *
@@ -45,7 +49,7 @@ class ImagePreview extends AbstractEntity
     protected $file;
 
     /**
-     * Ширина картинки.
+     * Ширина картинки
      *
      * @var integer
      *
@@ -54,7 +58,7 @@ class ImagePreview extends AbstractEntity
     protected $width;
 
     /**
-     * Высота картинки.
+     * Высота картинки
      *
      * @var integer
      *
@@ -65,7 +69,7 @@ class ImagePreview extends AbstractEntity
     /**
      * {@inheritdoc}
      */
-    public function __construct($originalFile = NULL)
+    public function __construct($originalFile = null)
     {
         parent::__construct($originalFile);
 
@@ -74,14 +78,14 @@ class ImagePreview extends AbstractEntity
                 throw new \Exception('Файл не является картинкой: ' . $this->getOriginalFile()->getRealPath());
             }
 
-            $this->setFile(new File($originalFile));
-            $this->setWidth($info[0]);
-            $this->setHeight($info[1]);
+            $this->file = new File($originalFile);
+            $this->width = $info[0];
+            $this->height = $info[1];
         }
     }
 
     /**
-     * Устанавливает имя.
+     * Устанавливает имя
      *
      * @param string $name Имя
      *
@@ -105,20 +109,6 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Устанавливает ширину.
-     *
-     * @param integer $width Ширина
-     *
-     * @return ImagePreview
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-
-        return $this;
-    }
-
-    /**
      * Возвращает ширину
      *
      * @return integer
@@ -129,21 +119,7 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Устанавливает высоту.
-     *
-     * @param integer $height Высота
-     *
-     * @return ImagePreview
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает высоту.
+     * Возвращает высоту
      *
      * @return integer
      */
@@ -153,7 +129,7 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Устанавливает изображение.
+     * Устанавливает изображение
      *
      * @param Image $image Изображение
      *
@@ -167,7 +143,7 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Возвращает изображение.
+     * Возвращает изображение
      *
      * @return Image
      */
@@ -177,21 +153,7 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Устанавливает файл.
-     *
-     * @param File $file Файл
-     *
-     * @return ImagePreview
-     */
-    public function setFile(File $file)
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает файл.
+     * Возвращает файл
      *
      * @return File
      */
@@ -201,22 +163,22 @@ class ImagePreview extends AbstractEntity
     }
 
     /**
-     * Является ли файл картинкой.
+     * Является ли файл картинкой
      *
      * @return bool
      */
     public function isImage()
     {
-        return TRUE;
+        return true;
     }
 
     /**
-     * Выполняется перед сохранением в БД.
+     * Выполняется перед сохранением в БД
      *
      * @ORM\PrePersist
      */
-    public function prePersistHandler()
+    public function prePersist()
     {
-        parent::prePersistHandler();
+        parent::prePersist();
     }
 }

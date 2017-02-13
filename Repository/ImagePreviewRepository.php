@@ -1,14 +1,11 @@
 <?php
-
-namespace SmartInformationSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Repository;
 
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractRepository;
+use SmartInformationSystems\FileBundle\Entity\Image;
+use SmartInformationSystems\FileBundle\Entity\ImagePreview;
 
-/**
- * Репозиторий изображений.
- *
- */
 class ImagePreviewRepository extends AbstractRepository
 {
     /**
@@ -17,15 +14,15 @@ class ImagePreviewRepository extends AbstractRepository
      * @param OriginalFile $originalFile Оригиналный файл
      * @param array $options Настройки
      *
-     * @return Image
+     * @return ImagePreview
      */
-    public function createEntity(OriginalFile $originalFile, array $options = array())
+    public function createEntity(OriginalFile $originalFile, array $options = [])
     {
         return new ImagePreview($originalFile);
     }
 
     /**
-     * Возвращает превью изображения по имени.
+     * Возвращает превью изображения по имени
      *
      * @param Image $image Изображение
      * @param string $name Имя
@@ -35,17 +32,17 @@ class ImagePreviewRepository extends AbstractRepository
     public function getByName(Image $image, $name)
     {
         if (!$image->getId()) {
-            return NULL;
+            return null;
         }
 
-        return $this->findOneBy(array(
+        return $this->findOneBy([
             'image' => $image,
             'name' => $name,
-        ));
+        ]);
     }
 
     /**
-     * Создание превью из файла.
+     * Создание превью из файла
      *
      * @param OriginalFile $originalFile Файл
      * @param string $name

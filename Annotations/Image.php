@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Annotations;
 
 use Doctrine\ORM\Mapping\Annotation;
@@ -31,10 +30,10 @@ final class Image implements Annotation
      *
      * @var boolean
      */
-    public $crop = FALSE;
+    public $crop = false;
 
     /**
      * @var array<SmartInformationSystems\FileBundle\Annotations\Image\Preview>
      */
-    public $previews = array();
+    public $previews = [];
 }

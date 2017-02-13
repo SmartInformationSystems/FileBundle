@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Common;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,18 +6,17 @@ use Doctrine\ORM\EntityRepository;
 use SmartInformationSystems\FileBundle\Entity\File;
 
 /**
- * Базовый репозиторий для файлов.
- *
+ * Базовый репозиторий для файлов
  */
 abstract class AbstractRepository extends EntityRepository
 {
     /**
-     * Создание экземпляра объекта.
+     * Создание экземпляра объекта
      *
      * @param OriginalFile $originalFile Оригинальный файл
      * @param array $options Настройки
      *
      * @return File
      */
-    abstract public function createEntity(OriginalFile $originalFile, array $options = array());
+    abstract public function createEntity(OriginalFile $originalFile, array $options = []);
 }

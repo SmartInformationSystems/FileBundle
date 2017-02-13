@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Common;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,13 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use SmartInformationSystems\FileBundle\Entity\File as SisFile;
 
 /**
- * Абстрактный класс для файлов.
- *
+ * Абстрактный класс для файлов
  */
 abstract class AbstractEntity
 {
     /**
-     * Идентификатор.
+     * Идентификатор
      *
      * @var int
      *
@@ -24,39 +22,30 @@ abstract class AbstractEntity
     protected $id;
 
     /**
-     * Дата создания.
+     * Дата создания
      *
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime", nullable=false)
      */
     protected $createdAt;
 
     /**
-     * Оригинальный файл.
+     * Оригинальный файл
      *
      * @var OriginalFile
      */
     protected $originalFile;
 
-    /**
-     * Конструктор.
-     *
-     * @param OriginalFile $originalFile Оригинальный файл
-     *
-     * @throws \Exception
-     */
-    public function __construct(OriginalFile $originalFile = NULL)
+    public function __construct(OriginalFile $originalFile = null)
     {
-        if ($originalFile === NULL) {
-            return;
+        if ($originalFile) {
+            $this->originalFile = $originalFile;
         }
-
-        $this->originalFile = $originalFile;
     }
 
     /**
-     * Возвращает идентификатор.
+     * Возвращает идентификатор
      *
      * @return integer
      */
@@ -66,19 +55,7 @@ abstract class AbstractEntity
     }
 
     /**
-     * Устанавливает дату создания.
-     *
-     * @param \DateTime $createdAt Дата создания
-     *
-     * @return void
-     */
-    private function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * Возвращает дату создания.
+     * Возвращает дату создания
      *
      * @return \DateTime
      */
@@ -92,13 +69,13 @@ abstract class AbstractEntity
      *
      * @ORM\PrePersist
      */
-    public function prePersistHandler()
+    public function prePersist()
     {
-        $this->setCreatedAt(new \DateTime());
+        $this->createdAt = new \DateTime();
     }
 
     /**
-     * Возвращает оригинальный файл.
+     * Возвращает оригинальный файл
      *
      * @return OriginalFile
      */
@@ -108,14 +85,14 @@ abstract class AbstractEntity
     }
 
     /**
-     * Возвращет файл.
+     * Возвращет файл
      *
      * @return SisFile
      */
     abstract public function getFile();
 
     /**
-     * Является ли файл картинкой.
+     * Является ли файл картинкой
      *
      * @return bool
      */

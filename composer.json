@@ -2,10 +2,12 @@
     "name" : "SmartInformationSystems/file-bundle",
     "description" : "File bundle",
     "type" : "symfony-bundle",
-    "authors" : [{
-        "name" : "YK115",
-        "email" : "info@smart-systems.ru"
-    }],
+    "authors" : [
+        {
+            "name" : "YK115",
+            "email" : "info@smart-systems.ru"
+        }
+    ],
     "keywords" : [
         "file image"
     ],
@@ -13,16 +15,17 @@
         "MIT"
     ],
     "require" : {
-        "imagine/imagine": "~0.6.0"
+        "php": ">=7.0",
+        "symfony/symfony": "3.2.*",
+        "imagine/imagine": "^0.6.0",
+        "ext-gd": "*"
     },
     "autoload" : {
-        "psr-0" : { "SmartInformationSystems\\FileBundle" : "" }
+        "psr-4" : { "SmartInformationSystems\\FileBundle\\" : "" }
     },
-    "target-dir" : "SmartInformationSystems/FileBundle",
     "extra" : {
         "branch-alias" : {
-            "dev-master" : "1.0-dev"
+            "dev-master" : "2.0-dev"
         }
     }
 }
-

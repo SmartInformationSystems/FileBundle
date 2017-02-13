@@ -1,25 +1,21 @@
 <?php
-
-namespace SmartInformationSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Repository;
 
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractRepository;
+use SmartInformationSystems\FileBundle\Entity\File;
 
-/**
- * Репозиторий файлов.
- *
- */
 class FileRepository extends AbstractRepository
 {
     /**
-     * Создание экземпляра объекта.
+     * Создание экземпляра объекта
      *
      * @param OriginalFile $originalFile Оригиналный файл
      * @param array $options Настройки
      *
      * @return File
      */
-    public function createEntity(OriginalFile $originalFile, array $options = array())
+    public function createEntity(OriginalFile $originalFile, array $options = [])
     {
         return new File($originalFile);
     }

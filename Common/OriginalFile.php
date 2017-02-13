@@ -1,32 +1,30 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Common;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Исходный файл ждя сохранения в хранилище.
- *
+ * Исходный файл ждя сохранения в хранилище
  */
 class OriginalFile extends File
 {
     /**
-     * Каталог для временных файлов.
+     * Каталог для временных файлов
      *
      * @var string
      */
     const TMP_DIR = '/tmp/smart_information_systems/fileBundle';
 
     /**
-     * Оригинальное имя.
+     * Оригинальное имя
      *
      * @var string
      */
     private $originalName;
 
     /**
-     * Установка оригинального имени.
+     * Установка оригинального имени
      *
      * @param string $name Оригинальное имя
      *
@@ -50,7 +48,7 @@ class OriginalFile extends File
     }
 
     /**
-     * Дублирование файла.
+     * Дублирование файла
      *
      * @return OriginalFile
      */
@@ -66,7 +64,7 @@ class OriginalFile extends File
     }
 
     /**
-     * Создание файла из загруженного файла.
+     * Создание файла из загруженного файла
      *
      * @param UploadedFile $uploadedFile
      *
@@ -75,7 +73,7 @@ class OriginalFile extends File
     public static function createFromUploadedFile(UploadedFile $uploadedFile)
     {
         if (!is_dir(self::TMP_DIR)) {
-            mkdir(self::TMP_DIR, 0770, TRUE);
+            mkdir(self::TMP_DIR, 0775, true);
         }
 
         $filename = md5(microtime() . $uploadedFile->getClientOriginalName()) . '.' . $uploadedFile->getClientOriginalExtension();

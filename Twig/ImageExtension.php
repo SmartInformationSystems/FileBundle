@@ -1,46 +1,40 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
-
 use SmartInformationSystems\FileBundle\Entity\Image;
-use SmartInformationSystems\FileBundle\Entity\ImagePreviewRepository;
+use SmartInformationSystems\FileBundle\Entity\ImagePreview;
+use SmartInformationSystems\FileBundle\Repository\ImagePreviewRepository;
 use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
 use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
 use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 
 /**
  * Расширение для изображений.
- *
  */
 class ImageExtension extends \Twig_Extension
 {
     /**
-     * Подключение к БД.
+     * Подключение к БД
      *
      * @var EntityManager
      */
     private $em;
+
     /**
-     * Хранилище файлов.
+     * Хранилище файлов
      *
      * @var AbstractStorage
      */
     private $storage;
+
     /**
-     * Хранилище файлов.
+     * Хранилище файлов
      *
      * @var $storageConfiguration
      */
     private $storageConfiguration;
 
-    /**
-     * Конструктор.
-     *
-     * @param EntityManager $em Подключение к БД
-     * @param ConfigurationContainer $storageConfiguration Настройки
-     */
     public function __construct(EntityManager $em, ConfigurationContainer $storageConfiguration)
     {
         $this->em = $em;
@@ -52,9 +46,9 @@ class ImageExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('sis_image_preview', array($this, 'previewFilter')),
-        );
+        return [
+            new \Twig_SimpleFilter('sis_image_preview', [$this, 'previewFilter']),
+        ];
     }
 
     /**
@@ -66,13 +60,13 @@ class ImageExtension extends \Twig_Extension
     }
 
     /**
-     * Возвращает хранилище файлов.
+     * Возвращает хранилище файлов
      *
      * @return AbstractStorage
      */
     private function getStorage()
     {
-        if ($this->storage === NULL) {
+        if ($this->storage === null) {
             $this->storage = StorageFactory::create($this->storageConfiguration);
         }
 
@@ -80,7 +74,7 @@ class ImageExtension extends \Twig_Extension
     }
 
     /**
-     * Возвращает ссылку на превью.
+     * Возвращает ссылку на превью
      *
      * @param Image $image Изображение
      * @param string $name Имя превью
@@ -90,7 +84,7 @@ class ImageExtension extends \Twig_Extension
     public function previewFilter(Image $image, $name)
     {
         /** @var ImagePreviewRepository $rep */
-        $rep = $this->em->getRepository('SmartInformationSystemsFileBundle:ImagePreview');
+        $rep = $this->em->getRepository(ImagePreview::class);
 
         if ($preview = $rep->getByName($image, $name)) {
             return $this->getStorage()->getUrl($preview);

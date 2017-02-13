@@ -1,24 +1,22 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractEntity;
 
 /**
- * Изображение.
+ * Изображение
  *
- * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Entity\ImageRepository")
+ * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Repository\ImageRepository")
  * @ORM\Table(name="sis_image")
  * @ORM\HasLifecycleCallbacks()
  */
 class Image extends AbstractEntity
 {
     /**
-     * Файл.
+     * Файл
      *
      * @var File
      *
@@ -28,7 +26,7 @@ class Image extends AbstractEntity
     protected $file;
 
     /**
-     * Ширина картинки.
+     * Ширина картинки
      *
      * @var integer
      *
@@ -37,7 +35,7 @@ class Image extends AbstractEntity
     protected $width;
 
     /**
-     * Высота картинки.
+     * Высота картинки
      *
      * @var integer
      *
@@ -46,7 +44,7 @@ class Image extends AbstractEntity
     protected $height;
 
     /**
-     * Превью.
+     * Превью
      *
      * @var ArrayCollection
      *
@@ -57,7 +55,7 @@ class Image extends AbstractEntity
     /**
      * {@inheritdoc}
      */
-    public function __construct(OriginalFile $originalFile = NULL)
+    public function __construct(OriginalFile $originalFile = null)
     {
         parent::__construct($originalFile);
 
@@ -68,28 +66,14 @@ class Image extends AbstractEntity
                 throw new \Exception('Файл не является картинкой: ' . $this->getOriginalFile()->getRealPath());
             }
 
-            $this->setFile(new File($originalFile));
-            $this->setWidth($info[0]);
-            $this->setHeight($info[1]);
+            $this->file = new File($originalFile);
+            $this->width = $info[0];
+            $this->height =$info[1];
         }
     }
 
     /**
-     * Устанвливает ширину картинки.
-     *
-     * @param integer $width Ширина картинки
-     *
-     * @return Image
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает ширину картинки.
+     * Возвращает ширину картинки
      *
      * @return integer
      */
@@ -99,41 +83,13 @@ class Image extends AbstractEntity
     }
 
     /**
-     * Устанавливает высоту картинки.
-     *
-     * @param integer $height Высота картинки
-     *
-     * @return Image
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает высоту картинки.
+     * Возвращает высоту картинки
      *
      * @return integer
      */
     public function getHeight()
     {
         return $this->height;
-    }
-
-    /**
-     * Устанавливает файл.
-     *
-     * @param File $file Файл
-     *
-     * @return Image
-     */
-    private function setFile(File $file)
-    {
-        $this->file = $file;
-
-        return $this;
     }
 
     /**
@@ -147,17 +103,17 @@ class Image extends AbstractEntity
     }
 
     /**
-     * Является ли файл картинкой.
+     * Является ли файл картинкой
      *
      * @return bool
      */
     public function isImage()
     {
-        return TRUE;
+        return true;
     }
 
     /**
-     * Добавление превью.
+     * Добавление превью
      *
      * @param ImagePreview $previews Превью
      *
@@ -171,7 +127,7 @@ class Image extends AbstractEntity
     }
 
     /**
-     * Удаление превью.
+     * Удаление превью
      *
      * @param ImagePreview $previews Превью
      *
@@ -185,7 +141,7 @@ class Image extends AbstractEntity
     }
 
     /**
-     * Возвращает список превью.
+     * Возвращает список превью
      *
      * @return ArrayCollection|ImagePreview[]
      */
@@ -208,16 +164,17 @@ class Image extends AbstractEntity
                 return $preview;
             }
         }
-        return NULL;
+
+        return null;
     }
 
     /**
-     * Выполняется перед сохранением в БД.
+     * Выполняется перед сохранением в БД
      *
      * @ORM\PrePersist
      */
-    public function prePersistHandler()
+    public function prePersist()
     {
-        parent::prePersistHandler();
+        parent::prePersist();
     }
 }

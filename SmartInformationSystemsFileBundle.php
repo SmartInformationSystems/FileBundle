@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
