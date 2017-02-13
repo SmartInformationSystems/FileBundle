@@ -27,14 +27,14 @@ class UploadedFileTransformer implements DataTransformerInterface
     private $storage;
 
     /**
-     * Repository
+     * Класс, в котором сохраняется изображение
      *
      * @var string
      */
-    private $repository;
+    private $dataClass;
 
     /**
-     * Класс, в котором сохраняется ихображение
+     * Класс, для которого сохраняется ихображение
      *
      * @var string
      */
@@ -47,11 +47,11 @@ class UploadedFileTransformer implements DataTransformerInterface
      */
     private $propertyName;
 
-    public function __construct(ObjectManager $om, AbstractStorage $storage, $repository, $entityClass, $propertyName)
+    public function __construct(ObjectManager $om, AbstractStorage $storage, $dataClass, $entityClass, $propertyName)
     {
         $this->om = $om;
         $this->storage = $storage;
-        $this->repository = $repository;
+        $this->dataClass = $dataClass;
         $this->entityClass = $entityClass;
         $this->propertyName = $propertyName;
     }
@@ -74,7 +74,7 @@ class UploadedFileTransformer implements DataTransformerInterface
         }
 
         /** @var AbstractRepository $rep */
-        $rep = $this->om->getRepository($this->repository);
+        $rep = $this->om->getRepository($this->dataClass);
 
         if (is_string($value)) {
             $file = $rep->find($value);

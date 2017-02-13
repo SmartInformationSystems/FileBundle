@@ -46,7 +46,7 @@ class FilesystemStorage extends AbstractStorage
 
         $token = $file->getFile()->getToken();
 
-        $path = substr($token, 0, 2) . '/' . substr($token, 2, 2) . '/';
+        $path = '/' . substr($token, 0, 2) . '/' . substr($token, 2, 2) . '/';
 
         if ($originalFile instanceof UploadedFile) {
             $extension = $originalFile->getClientOriginalExtension();
@@ -57,7 +57,7 @@ class FilesystemStorage extends AbstractStorage
         $filename = $token . '.' . $extension;
 
         $originalFile->move(
-            $this->getParam('path') . '/' . $path,
+            $this->getParam('path') . $path,
             $filename
         );
 

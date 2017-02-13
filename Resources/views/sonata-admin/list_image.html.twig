@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if value %}
+        <img src="{{ value|sis_image_preview('admin') }}"/>
+    {% endif %}
+{% endblock %}

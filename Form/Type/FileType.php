@@ -48,7 +48,7 @@ class FileType extends AbstractType
             new UploadedFileTransformer(
                 $this->om,
                 $this->storage,
-                $options['repository'],
+                $options['data_class'],
                 $options['entity_class'],
                 $builder->getName()
             )
@@ -97,7 +97,7 @@ class FileType extends AbstractType
         ;
 
         $resolver->setRequired(array(
-            'repository',
+            'data_class',
             'entity_class',
         ));
     }
