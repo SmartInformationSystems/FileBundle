@@ -8,17 +8,16 @@
 1. Прописать пакет и ссылку на репозиторий в `composer.json`
 ```json
 {
-    ...
+    // ...
     "require": {
-        ...
-        "SmartInformationSystems/file-bundle": "dev-master",
-        ...
+        // ...
+        "SmartInformationSystems/file-bundle": "dev-master"
     },
     "repositories": [
         {
             "type" : "vcs",
             "url" : "https://github.com/SmartInformationSystems/FileBundle.git"
-        },
+        }
     ]
 }
 ```
@@ -30,9 +29,9 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-            ...
+            // ...
             new SmartInformationSystems\FileBundle\SmartInformationSystemsFileBundle(),
-            ...
+            // ...
         );
     }
 }
@@ -45,5 +44,5 @@ smart_information_systems_file:
         type: filesystem
         params:
             path: '%kernel.root_dir%/../web/storage'
-            url: 'http://localhost/storage/'
+            url: 'http://localhost/storage'
 ```

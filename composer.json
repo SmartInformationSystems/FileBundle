@@ -22,7 +22,6 @@
     "autoload" : {
         "psr-4" : { "SmartInformationSystems\\FileBundle" : "" }
     },
-    "target-dir" : "SmartInformationSystems/FileBundle",
     "extra" : {
         "branch-alias" : {
             "dev-master" : "2.0-dev"
