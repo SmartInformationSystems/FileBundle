@@ -20,7 +20,7 @@
         "imagine/imagine": "^0.6.0"
     },
     "autoload" : {
-        "psr-4" : { "SmartInformationSystems\\FileBundle" : "" }
+        "psr-4" : { "SmartInformationSystems\\FileBundle\\" : "" }
     },
     "extra" : {
         "branch-alias" : {
