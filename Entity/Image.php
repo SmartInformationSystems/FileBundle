@@ -173,8 +173,8 @@ class Image extends AbstractEntity
      *
      * @ORM\PrePersist
      */
-    public function prePersistHandler()
+    public function prePersist()
     {
-        parent::prePersistHandler();
+        parent::prePersist();
     }
 }

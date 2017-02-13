@@ -142,9 +142,9 @@ class File extends AbstractEntity
      *
      * @ORM\PrePersist
      */
-    public function prePersistHandler()
+    public function prePersist()
     {
-        parent::prePersistHandler();
+        parent::prePersist();
 
         if (!$this->token) {
             $this->token = md5(microtime() . $this->getName());
