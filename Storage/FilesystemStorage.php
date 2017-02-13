@@ -17,7 +17,7 @@ class FilesystemStorage extends AbstractStorage
         parent::init();
 
         if (!is_dir($this->getParam('path'))) {
-            mkdir($this->getParam('path'), 0555, true);
+            mkdir($this->getParam('path'), 0775, true);
         }
     }
 

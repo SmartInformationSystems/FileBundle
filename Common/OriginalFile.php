@@ -73,7 +73,7 @@ class OriginalFile extends File
     public static function createFromUploadedFile(UploadedFile $uploadedFile)
     {
         if (!is_dir(self::TMP_DIR)) {
-            mkdir(self::TMP_DIR, 0770, true);
+            mkdir(self::TMP_DIR, 0775, true);
         }
 
         $filename = md5(microtime() . $uploadedFile->getClientOriginalName()) . '.' . $uploadedFile->getClientOriginalExtension();
