@@ -1,22 +1,20 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Storage;
 
 /**
- * Настройка хранилища.
- *
+ * Настройка хранилища
  */
 class ConfigurationContainer
 {
     /**
-     * Настройки.
+     * Настройки
      *
      * @var array
      */
     private $config = array();
 
     /**
-     * Конструктор.
+     * Конструктор
      *
      */
     public function __construct()
@@ -24,7 +22,7 @@ class ConfigurationContainer
     }
 
     /**
-     * Установка конфига.
+     * Установка конфига
      *
      * @param array $config Конфиг
      *
@@ -38,7 +36,7 @@ class ConfigurationContainer
     }
 
     /**
-     * Возвращает тип хранилища.
+     * Возвращает тип хранилища
      *
      * @return string
      */
@@ -48,7 +46,7 @@ class ConfigurationContainer
     }
 
     /**
-     * Возвращает настройки хранилища.
+     * Возвращает настройки хранилища
      *
      * @return array
      */

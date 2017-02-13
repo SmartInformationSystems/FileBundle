@@ -1,47 +1,38 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
-
 use SmartInformationSystems\FileBundle\Entity\File;
 use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
 use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
 use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 
 /**
- * Расширение для файлов.
- *
+ * Расширение для файлов
  */
 class FileExtension extends \Twig_Extension
 {
     /**
-     * Подключение к БД.
+     * Подключение к БД
      *
      * @var EntityManager
      */
     private $em;
 
     /**
-     * Хранилище файлов.
+     * Хранилище файлов
      *
      * @var AbstractStorage
      */
     private $storage;
 
     /**
-     * Хранилище файлов.
+     * Хранилище файлов
      *
      * @var $storageConfiguration
      */
     private $storageConfiguration;
 
-    /**
-     * Конструктор.
-     *
-     * @param EntityManager $em Подключение к БД
-     * @param ConfigurationContainer $storageConfiguration Настройки
-     */
     public function __construct(EntityManager $em, ConfigurationContainer $storageConfiguration)
     {
         $this->em = $em;
@@ -54,7 +45,7 @@ class FileExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('sis_get_url', array($this, 'fileGetUrlFilter')),
+            new \Twig_SimpleFilter('sis_get_url', [$this, 'fileGetUrlFilter']),
         );
     }
 
@@ -67,13 +58,13 @@ class FileExtension extends \Twig_Extension
     }
 
     /**
-     * Возвращает хранилище файлов.
+     * Возвращает хранилище файлов
      *
      * @return AbstractStorage
      */
     private function getStorage()
     {
-        if ($this->storage === NULL) {
+        if ($this->storage === null) {
             $this->storage = StorageFactory::create($this->storageConfiguration);
         }
 
@@ -81,7 +72,7 @@ class FileExtension extends \Twig_Extension
     }
 
     /**
-     * Возвращает ссылку на файл.
+     * Возвращает ссылку на файл
      *
      * @param File $file Файл
      *

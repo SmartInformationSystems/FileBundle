@@ -1,31 +1,26 @@
 <?php
-
-namespace SmartInformationSystems\FileBundle\Entity;
+namespace SmartInformationSystems\FileBundle\Repository;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
-
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractRepository;
+use SmartInformationSystems\FileBundle\Entity\Image;
+use SmartInformationSystems\FileBundle\Entity\ImagePreview;
 
-/**
- * Репозиторий изображений.
- *
- */
 class ImageRepository extends AbstractRepository
 {
     /**
-     * Создание экземпляра объекта.
+     * Создание экземпляра объекта
      *
      * @param OriginalFile $originalFile Оригиналный файл
      * @param array $options Настройки
      *
      * @return Image
      */
-    public function createEntity(OriginalFile $originalFile, array $options = array())
+    public function createEntity(OriginalFile $originalFile, array $options = [])
     {
         $image = new Image($originalFile);
 
@@ -45,7 +40,7 @@ class ImageRepository extends AbstractRepository
     }
 
     /**
-     * Ресайз изображения, хранящегося в файле, и сохранение в этот же файл.
+     * Ресайз изображения, хранящегося в файле, и сохранение в этот же файл
      *
      * @param OriginalFile $file Файл
      * @param integer $width Ширина
@@ -63,16 +58,16 @@ class ImageRepository extends AbstractRepository
                 new Box($width, $height),
                 $crop ? ImageInterface::THUMBNAIL_OUTBOUND : ImageInterface::THUMBNAIL_INSET
             )
-            ->save($file->getRealPath(), array(
+            ->save($file->getRealPath(), [
                 'jpeg_quality' => 100,
                 'png_compression_level' => 9,
-            ));
+            ]);
 
-        clearstatcache(TRUE, $file->getRealPath());
+        clearstatcache(true, $file->getRealPath());
     }
 
     /**
-     * Возвращает настройки создания изображения по аннотации поля.
+     * Возвращает настройки создания изображения по аннотации поля
      *
      * @param OriginalFile $originalFile Исходный файл
      * @param string $class Имя класса
@@ -82,7 +77,7 @@ class ImageRepository extends AbstractRepository
      */
     public static function getCreateOptions(OriginalFile $originalFile, $class, $property)
     {
-        $options = array();
+        $options = [];
 
         // Обработаем изображение
         $reader = new AnnotationReader();
@@ -93,7 +88,7 @@ class ImageRepository extends AbstractRepository
             $reflectionProperty,
             'SmartInformationSystems\FileBundle\Annotations\Image'
         )) {
-            $options['previews'] = array();
+            $options['previews'] = [];
 
             if (count($annotation->previews) > 0) {
 

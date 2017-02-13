@@ -1,23 +1,21 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractEntity;
 
 /**
- * Файл.
+ * Файл
  *
- * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Entity\FileRepository")
+ * @ORM\Entity(repositoryClass="SmartInformationSystems\FileBundle\Repository\FileRepository")
  * @ORM\Table(name="sis_file")
  * @ORM\HasLifecycleCallbacks()
  */
 class File extends AbstractEntity
 {
     /**
-     * Имя файла.
+     * Имя файла
      *
      * @var string
      *
@@ -26,7 +24,7 @@ class File extends AbstractEntity
     protected $name;
 
     /**
-     * Уникальный ключ.
+     * Уникальный ключ
      *
      * @var string
      *
@@ -35,7 +33,7 @@ class File extends AbstractEntity
     protected $token;
 
     /**
-     * Внешний уникальный ключ, зависит от системы хранения.
+     * Внешний уникальный ключ, зависит от системы хранения
      *
      * @var string
      *
@@ -44,7 +42,7 @@ class File extends AbstractEntity
     protected $externalToken;
 
     /**
-     * Тип файла.
+     * Тип файла
      *
      * @var string
      *
@@ -53,7 +51,7 @@ class File extends AbstractEntity
     protected $mime;
 
     /**
-     * Размер файла.
+     * Размер файла
      *
      * @var integer
      *
@@ -64,29 +62,15 @@ class File extends AbstractEntity
     /**
      * {@inheritdoc}
      */
-    public function __construct(OriginalFile $originalFile = NULL)
+    public function __construct(OriginalFile $originalFile = null)
     {
         parent::__construct($originalFile);
 
         if ($file = $this->getOriginalFile()) {
-            $this->setName($file->getOriginalName());
-            $this->setSize($file->getSize());
-            $this->setMime($file->getMimeType());
+            $this->name = $file->getOriginalName();
+            $this->size = $file->getSize();
+            $this->mime = $file->getMimeType();
         }
-    }
-
-    /**
-     * Устанавливает имя.
-     *
-     * @param string $name Имя
-     *
-     * @return File
-     */
-    private function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -100,21 +84,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Устанавливает токен.
-     *
-     * @param string $token Токен
-     *
-     * @return File
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает токен.
+     * Возвращает токен
      *
      * @return string
      */
@@ -124,7 +94,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Устанавливает токен во внешней системе.
+     * Устанавливает токен во внешней системе
      *
      * @param string $externalToken Токен во внешней системе
      *
@@ -138,7 +108,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Возвращает токен во внешней системе.
+     * Возвращает токен во внешней системе
      *
      * @return string
      */
@@ -148,21 +118,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Устанавливает тип.
-     *
-     * @param string $mime Тип
-     *
-     * @return File
-     */
-    private function setMime($mime)
-    {
-        $this->mime = $mime;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает тип.
+     * Возвращает тип
      *
      * @return string
      */
@@ -172,21 +128,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Устанавливает размер.
-     *
-     * @param integer $size Размер
-     *
-     * @return File
-     */
-    private function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Возвращает размер.
+     * Возвращает размер
      *
      * @return integer
      */
@@ -196,7 +138,7 @@ class File extends AbstractEntity
     }
 
     /**
-     * Выполняется перед сохранением в БД.
+     * Выполняется перед сохранением в БД
      *
      * @ORM\PrePersist
      */
@@ -204,8 +146,8 @@ class File extends AbstractEntity
     {
         parent::prePersistHandler();
 
-        if (!$this->getToken()) {
-            $this->setToken(md5(microtime() . $this->getName()));
+        if (!$this->token) {
+            $this->token = md5(microtime() . $this->getName());
         }
     }
 
@@ -218,12 +160,12 @@ class File extends AbstractEntity
     }
 
     /**
-     * Является ли файл картинкой.
+     * Является ли файл картинкой
      *
      * @return bool
      */
     public function isImage()
     {
-        return preg_match('/^image\//', $this->getMime());
+        return preg_match('/^image\//', $this->mime);
     }
 }

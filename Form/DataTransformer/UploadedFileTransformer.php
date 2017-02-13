@@ -1,68 +1,52 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use SmartInformationSystems\FileBundle\Common\OriginalFile;
 use SmartInformationSystems\FileBundle\Common\AbstractRepository;
 use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
-use SmartInformationSystems\FileBundle\Entity\ImageRepository;
+use SmartInformationSystems\FileBundle\Repository\ImageRepository;
 
-
-/**
- * Обработка загруженных файлов.
- *
- */
 class UploadedFileTransformer implements DataTransformerInterface
 {
     /**
-     * Подключение к БД.
+     * Подключение к БД
      *
      * @var ObjectManager
      */
     private $om;
 
     /**
-     * Хранилище.
+     * Хранилище
      *
      * @var AbstractStorage
      */
     private $storage;
 
     /**
-     * Repository.
+     * Repository
      *
      * @var string
      */
     private $repository;
 
     /**
-     * Класс, в котором сохраняется ихображение.
+     * Класс, в котором сохраняется ихображение
      *
      * @var string
      */
     private $entityClass;
 
     /**
-     * Имя поля с изображением.
+     * Имя поля с изображением
      *
      * @var string
      */
     private $propertyName;
 
-    /**
-     * Конструктор.
-     *
-     * @param ObjectManager $om Подключение к БД
-     * @param AbstractStorage $storage Хранилище
-     * @param string $repository Repository
-     * @param string $entityClass Класс, в котором сохраняется ихображение
-     * @param string $propertyName Имя поля с изображением
-     */
     public function __construct(ObjectManager $om, AbstractStorage $storage, $repository, $entityClass, $propertyName)
     {
         $this->om = $om;
@@ -85,8 +69,8 @@ class UploadedFileTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if ($value === NULL) {
-            return NULL;
+        if ($value === null) {
+            return null;
         }
 
         /** @var AbstractRepository $rep */

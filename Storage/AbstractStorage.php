@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Storage;
 
 use SmartInformationSystems\FileBundle\Entity\File;
@@ -9,38 +8,31 @@ use SmartInformationSystems\FileBundle\Exception\UnknownStorageParameterExceptio
 
 /**
  * Абстрактный класс хранилища.
- *
  */
 abstract class AbstractStorage
 {
     /**
-     * Параметры.
+     * Параметры
      *
      * @var array
      */
     private $parameters = array();
 
     /**
-     * Класс для объекта в БД.
+     * Класс для объекта в БД
      *
      * @var string
      */
     private $entityClass;
 
-    /**
-     * Конструктор.
-     *
-     * @param array $params Параметры
-     */
     public function __construct(array $params = array())
     {
         $this->parameters = $params;
-
         $this->init();
     }
 
     /**
-     * Инициализация.
+     * Инициализация
      *
      * @return void
      */
@@ -49,7 +41,7 @@ abstract class AbstractStorage
     }
 
     /**
-     * Возвращает параметр.
+     * Возвращает параметр
      *
      * @param string $name Имя параметра
      *
@@ -67,7 +59,7 @@ abstract class AbstractStorage
     }
 
     /**
-     * Установка класса для объектов в БД.
+     * Установка класса для объектов в БД
      *
      * @param string $entityClass Имя класса
      *
@@ -81,7 +73,7 @@ abstract class AbstractStorage
     }
 
     /**
-     * Возвращает класс для объектов в БД.
+     * Возвращает класс для объектов в БД
      *
      * @return string
      */
@@ -91,7 +83,7 @@ abstract class AbstractStorage
     }
 
     /**
-     * Возвращает ссылку на файл.
+     * Возвращает ссылку на файл
      *
      * @param File|Image|ImagePreview $file Файл
      *
@@ -100,7 +92,7 @@ abstract class AbstractStorage
     abstract public function getUrl($file);
 
     /**
-     * Сохраняет файл в хранилище.
+     * Сохраняет файл в хранилище
      *
      * @param File $file Файл
      *

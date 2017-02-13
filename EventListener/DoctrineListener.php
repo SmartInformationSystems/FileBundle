@@ -1,5 +1,4 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -9,10 +8,6 @@ use SmartInformationSystems\FileBundle\Storage\AbstractStorage;
 use SmartInformationSystems\FileBundle\Storage\ConfigurationContainer;
 use SmartInformationSystems\FileBundle\Storage\StorageFactory;
 
-/**
- * Обработчик событий Doctrine.
- *
- */
 class DoctrineListener
 {
     /**

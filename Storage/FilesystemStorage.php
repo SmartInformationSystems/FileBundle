@@ -1,14 +1,11 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Storage;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use SmartInformationSystems\FileBundle\Entity\File;
 
 /**
- * Хранилище в файловой системе.
- *
+ * Хранилище в файловой системе
  */
 class FilesystemStorage extends AbstractStorage
 {
@@ -20,7 +17,7 @@ class FilesystemStorage extends AbstractStorage
         parent::init();
 
         if (!is_dir($this->getParam('path'))) {
-            mkdir($this->getParam('path'), 0555, TRUE);
+            mkdir($this->getParam('path'), 0555, true);
         }
     }
 
@@ -43,7 +40,7 @@ class FilesystemStorage extends AbstractStorage
 
         $originalFile = $file->getOriginalFile();
 
-        if ($originalFile === NULL) {
+        if ($originalFile === null) {
             throw new \Exception('Нечего сохранять в хранилище.');
         }
 
@@ -56,7 +53,6 @@ class FilesystemStorage extends AbstractStorage
         } else {
             $extension = $originalFile->getExtension();
         }
-
 
         $filename = $token . '.' . $extension;
 

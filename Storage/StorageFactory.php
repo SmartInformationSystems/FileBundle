@@ -1,17 +1,15 @@
 <?php
-
 namespace SmartInformationSystems\FileBundle\Storage;
 
 use SmartInformationSystems\FileBundle\Exception\UnknownStorageException;
 
 /**
- * Фабрика объектов хранилища.
- *
+ * Фабрика объектов хранилища
  */
 class StorageFactory
 {
     /**
-     * Создание объекта хранилища.
+     * Создание объекта хранилища
      *
      * @param ConfigurationContainer $config
      *
