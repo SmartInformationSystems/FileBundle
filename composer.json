@@ -1,5 +1,5 @@
 {
-    "name" : "SmartInformationSystems/file-bundle",
+    "name" : "smart-information-systems/file-bundle",
     "description" : "File bundle",
     "type" : "symfony-bundle",
     "authors" : [
