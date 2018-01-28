@@ -93,6 +93,9 @@ class FileType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'invalid_message' => 'Error storing file.',
+                'empty_data' => function (Form $form) {
+                    return $form->getData()->getId();
+                },
             ))
         ;
 

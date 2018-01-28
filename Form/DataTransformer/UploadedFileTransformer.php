@@ -76,7 +76,7 @@ class UploadedFileTransformer implements DataTransformerInterface
         /** @var AbstractRepository $rep */
         $rep = $this->om->getRepository($this->dataClass);
 
-        if (is_string($value)) {
+        if (is_scalar($value)) {
             $file = $rep->find($value);
 
             if ($file) {
